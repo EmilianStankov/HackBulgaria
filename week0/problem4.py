@@ -13,3 +13,14 @@ def is_prime(n):
             else:
                 isPrime = True
     return isPrime
+
+
+def main():
+    print(is_prime(1))
+    print(is_prime(2))
+    print(is_prime(8))
+    print(is_prime(11))
+    print(is_prime(-10))
+
+
+main()
