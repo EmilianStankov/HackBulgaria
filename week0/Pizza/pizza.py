@@ -91,6 +91,8 @@ def main():
             print("If you wish to continue, type finish again.")
             print("If you want to save your order, type save")
             command = input("Enter command>")
+            if command == 'finish':
+                print('Finishing order. Goodbye!')
 
         else:
             print("Unknown command!")
