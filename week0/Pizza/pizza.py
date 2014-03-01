@@ -92,6 +92,16 @@ def main():
             print("If you want to save your order, type save")
             command = input("Enter command>")
 
+        else:
+            print("Unknown command!")
+            print("Try one of the following:")
+            print("take <name> <price>")
+            print("status")
+            print("save")
+            print("list")
+            print("load <number>")
+            print("finish")
+
 
 if __name__ == '__main__':
     main()
