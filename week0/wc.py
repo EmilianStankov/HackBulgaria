@@ -15,11 +15,15 @@ def main():
         print(chars)
     elif sys.argv[1] == 'words':
         for symbol in content:
-            if symbol != " ":
+            if symbol != " " and symbol != "\n":
                 to_append += symbol
             else:
-                words.append(to_append)
-                to_append = ""
+                if to_append != "":
+                    words.append(to_append)
+                    to_append = ""
+
+        if to_append != "":
+            words.append(to_append)
         print(len(words))
     elif sys.argv[1] == 'lines':
         for symbol in content:
