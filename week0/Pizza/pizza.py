@@ -27,7 +27,8 @@ def main():
                 content[command_list[1]] = float(command_list[2])
                 print("Taking order from", command_list[1], "for", command_list[2])
             else:
-                content[command_list[1]] += int(command_list[2])
+                content[command_list[1]] += float(command_list[2])
+                content[command_list[1]] = round(content[command_list[1]], 2)
                 print("Taking order from", command_list[1], "for", command_list[2])
 
         elif command_list[0] == 'status':
