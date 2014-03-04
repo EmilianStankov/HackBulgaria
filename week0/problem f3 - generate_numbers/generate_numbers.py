@@ -3,7 +3,7 @@ from random import randint
 
 
 def main():
-    filename = sys.argv[1] + '.txt'
+    filename = sys.argv[1]
     length = int(sys.argv[2])
     file = open(filename, 'w')
     for i in range(length):
