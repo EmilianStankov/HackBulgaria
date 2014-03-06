@@ -64,9 +64,12 @@ def list():
 
 def load(saves_list, command):
     command_list = command.split(" ")
-    save_index = command_list[1]
-    filename = saves_list[int(save_index) - 1]
-    return filename
+    if len(command_list) >= 2 and type(command_list[1]) == int:
+        save_index = command_list[1]
+        filename = saves_list[int(save_index) - 1]
+        return filename
+    else:
+        print('Please enter an index of a file to load.')
 
 
 def status(filename):
