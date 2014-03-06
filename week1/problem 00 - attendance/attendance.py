@@ -59,10 +59,46 @@ def list():
                 saves_list.append(file)
     saves_list.sort()
     saves_list.reverse()
+    return(saves_list)
+
+
+def load(saves_list, command):
+    command_list = command.split(" ")
+    save_index = command_list[1]
+    filename = saves_list[int(save_index) - 1]
+    return filename
+
+
+def status(filename):
+    file = open(filename, 'r')
+    content = file.readlines()
+    for line in content:
+        print(line.rstrip())
+
+
+def statistic(saves_list):
     for save in saves_list:
-        print('[' + str(saves_list.index(save) + 1) + '] - ' + save)
+        students = 0
+        file = open(save, 'r')
+        content = file.readlines()
+        for line in content:
+            students += 1
+        print(save[11:] + ' - ' + str(students) + ' people attending from total of 43')
+
+
+def error():
+    print('Not a valid command, please enter one of the following:')
+    print(' - create')
+    print(' - change_date')
+    print(' - add <name>')
+    print(' - list')
+    print(' - load')
+    print(' - status')
+    print(' - statistic')
+
 
 def main():
+    saves_list = list()
     command = ""
     ts = time()
     stamp = datetime.fromtimestamp(ts).strftime('%Y_%m_%d')
@@ -78,6 +114,16 @@ def main():
             add(command, filename)
         elif command.startswith('list') == True:
             list()
+            for save in saves_list:
+                print('[' + str(saves_list.index(save) + 1) + '] - ' + save)
+        elif command.startswith('load') == True:
+            filename = load(saves_list, command)
+        elif command.startswith('status') == True:
+            status(filename)
+        elif command.startswith('statistic') == True:
+            statistic(saves_list)
+        else:
+            error()
 
 
 if __name__ == '__main__':
