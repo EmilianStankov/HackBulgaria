@@ -1,4 +1,4 @@
-import os, fnmatch
+import os
 from subprocess import call
 
 
