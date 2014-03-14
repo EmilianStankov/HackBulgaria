@@ -137,8 +137,8 @@ class TestMap(unittest.TestCase):
         self.hero = a_hero.Hero("Bron", 100, "The DragonSlayer")
         self.orc = a_hero.Orc("Thrall", 76, 1.3)
 
-    def test_print_map(self):
-        self.dungeon.print_map()
+    #def test_print_map(self):
+        #self.dungeon.print_map()
 
     def test_spawn_hero(self):
         self.assertTrue(self.dungeon.spawn('player 1', self.hero))
@@ -149,7 +149,7 @@ class TestMap(unittest.TestCase):
     def test_spawn_hero_and_orc(self):
         self.dungeon.spawn('player 1', self.hero)
         self.assertTrue(self.dungeon.spawn('player 2', self.orc))
-        self.dungeon.print_map()
+        #self.dungeon.print_map()
 
     def test_spawn_more_than_spawn_locations(self):
         self.dungeon.spawn('player 1', self.hero)
@@ -157,6 +157,18 @@ class TestMap(unittest.TestCase):
         self.dungeon.spawn('player 1', self.hero)
         self.dungeon.spawn('player 2', self.orc)
         self.assertTrue(not self.dungeon.spawn('player 2', self.orc))
+
+    def test_map_height(self):
+        self.assertEqual(5, self.dungeon.map_height)
+
+    def test_map_width(self):
+        self.assertEqual(10, self.dungeon.map_width)
+
+    def test_move_right(self):
+        self.dungeon.spawn('player 1', self.hero)
+        self.dungeon.move('player 1', 'right')
+        self.dungeon.print_map()
+        self.assertTrue(not self.dungeon.move('player 1', 'right'))
 
 
 if __name__ == '__main__':

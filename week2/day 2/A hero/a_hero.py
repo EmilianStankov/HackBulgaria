@@ -132,21 +132,41 @@ class Dungeon():
     def __init__(self, map):
         self.map = map
         self.dungeon_map = open(self.map, 'r')
-        self.__content = self.dungeon_map.read()
+        self.map_array = []
+        for line in self.dungeon_map.readlines():
+            self.map_array.append(line.strip())
+        self.map_height = len(self.map_array)
+        self.map_width = len(self.map_array[0])
         self.dungeon_map.close()
 
     def print_map(self):
-        print(self.__content)
+        print('\n'.join(self.map_array))
 
     def spawn(self, player_name, entity):
+        self.player_name = player_name
         __successful = False
-        if self.__content.count('S') > 0:
-            if type(entity) == Hero:
-                self.__content = self.__content.replace('S', 'H', 1)
-                __successful = True
-            elif type(entity) == Orc:
-                self.__content = self.__content.replace('S', 'O', 1)
-                __successful = True
-        else:
-            __successful = False
+        for i in range(len(self.map_array)):
+            if self.map_array[i].count('S') > 0:
+                if type(entity) == Hero:
+                    self.map_array[i] = self.map_array[i].replace('S', 'H', 1)
+                    __successful = True
+                    break
+                elif type(entity) == Orc:
+                    self.map_array[i] = self.map_array[i].replace('S', 'O', 1)
+                    __successful = True
+                    break
+            else:
+                __successful = False
         return __successful
+
+    def move(self, player_name, direction):
+        self.direction = direction
+        for i in range(len(self.map_array)):
+            for j in range(len(self.map_array[i])):
+                if self.map_array[i][j] == 'H' and self.direction == 'right' and self.map_array[i][j + 1] == '.':
+                    self.map_array[i] = self.map_array[i].replace('.', 'H', 1)
+                    self.map_array[i] = self.map_array[i].replace('H', '.', 1)
+                    return True
+                #move left, up, down still to be done
+                else:
+                    return False
