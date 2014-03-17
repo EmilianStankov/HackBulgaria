@@ -1,7 +1,7 @@
 import sys
 
 
-def main():
+def sum_numbers():
     filename = sys.argv[1]
     file = open(filename, 'r')
     content = file.read()
@@ -16,7 +16,11 @@ def main():
             to_append = ""
     for each in numbers:
         sum += int(each)
-    print(sum)
+    file.close()
+    return sum
+
+def main():
+    print(sum_numbers())
 
 if __name__ == '__main__':
     main()

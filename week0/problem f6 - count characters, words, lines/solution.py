@@ -1,10 +1,11 @@
 import sys
 
 
-def main():
+def counter():
     filename = sys.argv[2]
     file = open(filename, 'r')
     content = file.read()
+    file.close()
     chars = 0
     words = []
     lines = 1
@@ -12,7 +13,8 @@ def main():
     if sys.argv[1] == 'chars':
         for i in range(len(content)):
             chars += 1
-        print(chars)
+        return chars
+
     elif sys.argv[1] == 'words':
         for symbol in content:
             if symbol != " " and symbol != "\n":
@@ -21,15 +23,15 @@ def main():
                 if to_append != "":
                     words.append(to_append)
                     to_append = ""
-
         if to_append != "":
             words.append(to_append)
-        print(len(words))
+        return len(words)
+
     elif sys.argv[1] == 'lines':
         for symbol in content:
             if symbol == '\n':
                 lines += 1
-        print(lines)
+        return lines
 
 
 if __name__ == '__main__':

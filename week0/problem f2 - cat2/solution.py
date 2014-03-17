@@ -1,16 +1,21 @@
 import sys
 
 
+def cat2():
+    content = []
+    for i in range(1, len(sys.argv)):
+        filename = ""
+        file = ""
+        filename = sys.argv[i]
+        file = open(filename, 'r')
+        file_contents = file.read()
+        content.append(file_contents)
+        file.close()
+    return '\n\n'.join(content)
+
+
 def main():
-    for i in range(len(sys.argv)):
-        if len(sys.argv) > 1:
-            filename = ""
-            file = ""
-            content = ""
-            filename = sys.argv[i]
-            file = open(filename, 'r')
-            content = file.read()
-            print(content, '\n')
+    print(cat2())
 
 
 if __name__ == '__main__':
